@@ -1,0 +1,119 @@
+---
+title: "Visor de plantacion de Capirona "
+author: "Florez Gorky; Mamani Yicelia"
+date: "19/05/2025"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    #logo: PNG/Bio.png
+    social: [ "twitter", "facebook", "whatsapp", "instagram", "telegram", "linkedin", "pinterest" ]
+    source_code: "https://github.com/GorkyFlorez"
+    theme: default
+    # "default", "cerulean", "journal", "flatly", "darkly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", "yeti"
+---
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(tm)
+library(wordcloud)
+library(sf)
+library(formattable)
+library(RColorBrewer)
+library(DT)
+library(crosstalk)
+library(leaflet)
+library(leaflet.extras)
+library(leaflet.providers)
+library(htmlwidgets)
+library(leafem)
+library(plotly)
+library(ggplot2)
+
+
+source("Mapa.R")
+source("Estadistica_visor.R")
+```
+
+# Visor de los Recursos forestales  {data-icon=fa-globe-americas} 
+
+Column  {data-width=1500}
+-------------------------------------
+### 
+```{r}
+Mapa
+```
+
+
+
+
+
+
+# Estadisticas {data-icon="fa-chart-bar"} 
+
+Column {.tabset}
+-------------------------------------
+   
+### Diámetro del tallo en la base 
+
+<img src="https://i.postimg.cc/0Qnsyjtd/DTB.png" width="100%">
+
+
+
+### Diámetro del tallo a media altura
+    
+<img src="https://i.postimg.cc/4y3T7GqC/DTMA.png" width="100%">
+
+### Altura total 
+
+<img src="https://i.postimg.cc/L50Fj7FJ/ALT.png" width="100%">
+
+
+### Altura inserción de la primera rama
+
+<img src="https://i.postimg.cc/TYp6TRng/ALT-In.png" width="100%">
+
+
+### Número de hojas
+
+<img src="https://i.postimg.cc/bNWjJKRM/NH.png" width="100%">
+
+
+### Diametro de copa
+
+<img src="https://i.postimg.cc/jSfYJZgj/DC.png" width="100%">
+
+
+
+
+
+# Tabla Informativa {data-icon="fa-database"} 
+
+Column {data-width=1200} 
+-------------------------------------
+
+### Base de Datos
+```{r}
+library(readxl)
+library(writexl)
+Registros <- read_excel("C:/Users/INIA/OneDrive/03_INIA_2025/16_Establecimiento del bancoi de germoplasma/BD_Plantacion.xlsx", 
+                        sheet = "Estadistica") %>%
+  select(-Fotografia, -Abril, -Estadis_Abril)
+
+datatable(Registros, options = list(pageLength = 75))
+
+
+```
+
+
+
+
+
+
+
+
+
+
